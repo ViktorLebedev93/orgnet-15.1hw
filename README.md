@@ -35,7 +35,7 @@ Resource Terraform для Yandex Cloud:
 
 Конфигурируем провайдера
 
-main.tf
+[main.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/main.tf)
 
 ```
 terraform {
@@ -57,7 +57,7 @@ provider "yandex" {
 
 Определяем переменные
 
-variables.tf
+[variables.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/variables.tf)
 
 ```
 variable "yc_token" {
@@ -120,7 +120,7 @@ variable "nat_image_id" {
 
 variable "ubuntu_image_id" {
   type        = string
-  default     = "fd827b91d99psvq5fjit"
+  default     = "fd84h56p8ucfgqroscfv"
   description = "Ubuntu 20.04 image ID"
 }
 
@@ -133,7 +133,7 @@ variable "nat_instance_ip" {
 
 Создадим VPC
 
-network.tf
+[network.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/network.tf)
 
 ```
 resource "yandex_vpc_network" "my_vpc" {
@@ -171,7 +171,7 @@ resource "yandex_vpc_route_table" "private_route" {
 
 Создадим NAT-инстанс с фиксированным IP 192.168.10.254
 
-nat_instance.tf
+[nat_instance.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/nat_instance.tf)
 
 ```
 resource "yandex_compute_instance" "nat_instance" {
@@ -205,7 +205,7 @@ resource "yandex_compute_instance" "nat_instance" {
 
 Создадим тестовую ВМ в публичной подсети (с публичным IP)
 
-public.tf
+[public.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/public.tf)
 
 ```
 resource "yandex_compute_instance" "public_vm" {
@@ -238,7 +238,7 @@ resource "yandex_compute_instance" "public_vm" {
 
 Создадим тестовую ВМ в приватной подсети (только внутренний IP)
 
-private.tf
+[private.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/private.tf)
 
 ```
 resource "yandex_compute_instance" "private_vm" {
@@ -271,7 +271,7 @@ resource "yandex_compute_instance" "private_vm" {
 
 Создадим вывод
 
-outputs.tf
+[outputs.tf](https://github.com/ViktorLebedev93/orgnet-15.1hw/blob/main/outputs.tf)
 
 ```
 output "nat_instance_public_ip" {
@@ -301,7 +301,29 @@ output "nat_instance_internal_ip" {
 ```
 
 Ресурсы созданы
+
 ![img1](img/img1.jpg)
+
+Подключаемся к публичной ВМ и проверяем в ней работу интернета
+
+![img2](img/img2.jpg)
+
+Подключаемся с публичной машины к приватной и проверяем работу интернета в ней
+
+![img3](img/img3.jpg)
+
+Погасил NAT инстанс
+
+![img4](img/img4.jpg)
+
+Интернет на приватной ВМ перестал работать
+
+![img5](img/img5.jpg)
+
+В ходе задачи мы создали public-vm , private-vm и nat-instance
+Так же output вывод созданного Terraform
+
+![img6](img/img6.jpg)
 
 Resource Terraform:
 
