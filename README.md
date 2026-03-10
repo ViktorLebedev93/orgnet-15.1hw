@@ -325,6 +325,8 @@ output "nat_instance_internal_ip" {
 
 ![img6](img/img6.jpg)
 
+---
+
 Resource Terraform:
 
 1. [VPC](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc).
